@@ -1,0 +1,11 @@
+import base64
+
+data = """UklGRhYCAABXRUJQVlA4IAoCAACQEACdASpOAGQAPzmKvFWvKSYyLrQLykAnCWUA0JBWwYCcf_mYCXmzfsOsqGvuwWTShS0Ga7WYN6qPVkIS019fEtfUYig0JbeaOvJW2zLvplkDy5e0YgqnXdbyR8vyCwvER2TcHDhgjFl5SNwFIKIqthIGZ9lxHNRbW6SgyR1VfZMVfqMH4xEzX0HaHAAA_vDLYQeZ6aOOK1mF97i1uObA_Sw4rOQgf_u92gYtOMMn4nnlmG2q8sadw7SI2FxVJchZ4plsvDky3ZGp2ms0EAPgC5VibJwrWl_sHv5Taz0JkG5y8qQjbVovdS6F4eVUyb80j0Mi12tbdaocWYOe4WYDrsPDfWKpir0_L4ETHhSYFtpIwvQubySUiKgC-uhH040wD_NysLOUgITBMIyfAXnJveJNrfo8gNbToGQiJ00ANaqbXghIawH6YsxWZDSYn2IEJ5lgqm1-wI-7KN8ssT5U5BTBMtOtJqFOzlLyg7hooOP25010Sur_5lsjurqnNv-cAgrH2ig1qGbELhGsZm8qnnz42Xqq6XBwMme9OTEIJ26BhkMAIseetDRJHlDvcqHwzwdPqV4bNcSDbzpAYT8yjpzI6v_XWbZzBHhmvw2h2BB4KG3oFVrXp7vtvRkg5gY7KSAOuM6Wyoeas8Eb_o87oO0_bho1lmQvl8icKH4Xyu5mo6NPk6DhAAA:DLT:Teferi Masresha Getaneh:V:4:G:M:A:2386946741349147:D:2000/07/26:SIGN:eyJhbGciOiJSUzI1NiJ9..dl3gGiCoi5_k4JA0RTgznPqLoYcn2EQSpDFME0NBkzaNuLz1ITtRWQoBOgo27CHo-PrFJa0lHkenMgLITlMDi_KUNtSlcd27AGpmrGXPkzJOLBJkH57Dy53GUKXhg3sRdgTsN4FrwUasvBT71eMU-s-CFKuPWsZdM9QC-nBmZ7BepT8ZVL_87JPKTZYURcCy9sShihICEPFA85b-Iy8-na_TeSBlLfrn11Q9dcqTWQEfBMF01oU1_rDOmh7pQ3SFrgXI1aU3uYvme-vOM5uYe6gRsiom03-D4jvvLAxCFzv3eqDmwj_As2LEnOA_Oe_6bOgDwzm436JMwqLdL6xZ2w"""
+base64_part = data.split(":DLT:")[0]
+base64_part = base64_part.replace('-', '+').replace('_', '/')
+base64_part += "=" * (-len(base64_part) % 4)
+
+decoded = base64.b64decode(base64_part)
+
+with open("output.webp", "wb") as f:
+    f.write(decoded)
